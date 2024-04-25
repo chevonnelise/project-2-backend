@@ -26,6 +26,11 @@ app.use(
 
 async function main() {
     // routes here
+    const landingRoutes = require('./routes/landing')
+    const productRoutes = require('./routes/products')
+    // use landing routes
+    app.use('/', landingRoutes);
+    app.use('/products', productRoutes);
 
 }
 
@@ -33,5 +38,5 @@ main();
 
 
 app.listen(PORT, ()=>{
-    console.log("server started on port ${PORT}")
+    console.log(`server started on port ${PORT}`)
 });
