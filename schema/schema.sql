@@ -81,37 +81,57 @@ CREATE TABLE Brand (
     name VARCHAR(45)
 );
 
---- edit hereeeeeeeeeeeee
 -- Creating Review Table
 CREATE TABLE Review (
     review_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    product_id INT,
-    rating INT,
+    username VARCHAR(45) UNIQUE NOT NULL,
+    product_id INT UNSIGNED,
+    rating INT UNSIGNED,
     comment TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (username) REFERENCES User(username),
     FOREIGN KEY (product_id) REFERENCES Product(product_id)
-);
-
--- Creating Order Table
-CREATE TABLE Order (
-    order_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    total_amount DECIMAL(10,2),
-    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
 -- Creating OrderItem Table
 CREATE TABLE OrderItem (
-    item_id INT PRIMARY KEY AUTO_INCREMENT,
-    order_id INT,
-    product_id INT,
-    quantity INT,
+    order_item_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    product_id INT UNSIGNED,
+    quantity INT UNSIGNED,
     price DECIMAL(10,2),
-    FOREIGN KEY (order_id) REFERENCES Order(order_id),
-    FOREIGN KEY (product_id) REFERENCES Product(product_id)
+    FOREIGN KEY (product_id) REFERENCES Product(product_id),
+    FOREIGN KEY (price) REFERENCES Product(price)
 );
 
--- Creating 
+-- Creating Order Table
+CREATE TABLE Order (
+    order_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    user_id INT UNSIGNED,
+    total_amount DECIMAL(10,2),
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    discount_percentage DECIMAL(5,2),
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (discount_percentage) REFERENCES Discount(discount_percentage),
+    FOREIGN KEY (order_item_id) REFERENCES OrderItem(order_item_id)
+);
+
+-- Creating Payment Table
+
+CREATE TABLE Payment (
+    payment_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    order_id INT UNSIGNED,
+    total_amount DECIMAL(10,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    payment_status BOOLEAN,
+    FOREIGN KEY (order_id) REFERENCES Order(order_id),
+    FOREIGN KEY (total_amount) REFERENCES Order(total_amount)
+);
+
+-- Creating Discount Table
+CREATE TABLE Discount (
+    discount_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    code VARCHAR(45) UNIQUE,
+    discount_percentage DECIMAL(5,2),
+    expiration_date DATE,
+    status BOOLEAN
+);
