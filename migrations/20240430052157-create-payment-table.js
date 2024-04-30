@@ -19,23 +19,23 @@ exports.setup = function(options, seedLink) {
  */
 exports.up = function(db) {
   return db.createTable('Payment', {
-    'payment_id': {
+    'id': {
       'type': 'int',
       'primaryKey': true,
       'autoIncrement': true,
       'unsigned': true
     },
-    'order_detail_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'order_detail_id_fk',
+        'name': 'id_fk',
         'table': 'OrderDetail',
         'rules': {
           'onDelete': 'RESTRICT',
           'onUpdate': 'RESTRICT'
         },
-        'mapping': 'order_detail_id'
+        'mapping': 'id'
       }
     },
     'created_at': {

@@ -1,0 +1,78 @@
+{{#extends "base"}}
+
+{{#block "content"}}
+<h1>All Products</h1>
+
+<table class="table">
+    <thead>
+        <th>
+            Product ID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            SKU
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Image
+        </th>
+        <th>
+            Created at
+        </th>
+        <th>
+            Last updated 
+        </th>
+        <th>
+            Brand
+        </th>
+        <th>
+            Review
+        </th>
+        <th>
+        </th>
+    </thead>
+    {{#each products}}
+    <tr>
+        <td>
+            {{this.id}}
+        </td>
+        <td>
+            {{this.name}}
+        </td>
+        <td>
+            {{this.description}}
+        </td>
+        <td>
+            {{this.sku}}
+        </td>
+        <td>
+            {{this.price}}
+        </td>
+        <td>
+            {{this.image_url}}
+        </td>
+        <td>
+            {{this.created_at}}
+        </td>
+        <td>
+            {{this.last_modified}}
+        </td>
+        <td>
+            <a href="/products/update-product/{{this.id}}" class="btn btn-dark">Update</a>
+        </td>
+    {{!-- brand id --}}
+    {{!-- review id --}}
+    </tr>
+    {{/each}}
+</table>
+
+{{/block}}
+
+{{/extends}}

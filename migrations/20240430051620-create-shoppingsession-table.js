@@ -19,7 +19,7 @@ exports.setup = function(options, seedLink) {
  */
 exports.up = function(db) {
   return db.createTable('ShoppingSession', {
-    'shopping_session_id': {
+    'id': {
       'type': 'int',
       'primaryKey': true,
       'autoIncrement': true,

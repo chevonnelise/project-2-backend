@@ -5,6 +5,5 @@
         "password":"admin1234",
         "database":"superfoods",
         "host": "127.0.0.1"
-
     }
 }

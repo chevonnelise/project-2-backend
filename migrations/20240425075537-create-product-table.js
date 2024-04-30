@@ -19,7 +19,7 @@ exports.setup = function(options, seedLink) {
  */
 exports.up = function(db) {
   return db.createTable('Product', {
-    'product_id': {
+    'id': {
       'type': 'int',
       'primaryKey': true,
       'autoIncrement': true,
@@ -37,7 +37,6 @@ exports.up = function(db) {
     'sku': {
       'type': 'string',
       'length': 255,
-      'notNull': true,
       'unique': true
     },
     'price': {
@@ -52,7 +51,6 @@ exports.up = function(db) {
     'image_url': {
       'type': 'string',
       'length': 255,
-      'notNull': true,
       'unique': true
     },
     'created_at': {
@@ -63,43 +61,43 @@ exports.up = function(db) {
       'type': 'datetime',
       'defaultValue': new String('CURRENT_TIMESTAMP')
     },
-    'product_category_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'product_category_id_fk',
+        'name': 'id_fk',
         'table': 'ProductCategory',
         'rules': {
           'onDelete': 'RESTRICT',
           'onUpdate': 'RESTRICT'
         },
-        'mapping': 'product_category_id'
+        'mapping': 'id'
       }
     },
-    'brand_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'brand_id_fk',
+        'name': 'id_fk',
         'table': 'Brand',
         'rules': {
-          'onDelete': 'CASCADE',
-          'onUpdate': 'CASCADE'
+          'onDelete': 'RESTRICT',
+          'onUpdate': 'RESTRICT'
         },
-        'mapping': 'brand_id'
+        'mapping': 'id'
       }
     },
-    'review_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'review_id_fk',
+        'name': 'id_fk',
         'table': 'Review',
         'rules': {
-          'onDelete': 'CASCADE',
-          'onUpdate': 'CASCADE'
+          'onDelete': 'RESTRICT',
+          'onUpdate': 'RESTRICT'
         },
-        'mapping': 'review_id'
+        'mapping': 'id'
       }
     }
   });

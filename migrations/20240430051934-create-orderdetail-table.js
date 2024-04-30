@@ -19,23 +19,23 @@ exports.setup = function(options, seedLink) {
  */
 exports.up = function(db) {
   return db.createTable('OrderDetail', {
-    'order_detail_id': {
+    'id': {
       'type': 'int',
       'primaryKey': true,
       'autoIncrement': true,
       'unsigned': true
     },
-    'user_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'user_id_fk',
+        'name': 'id_fk',
         'table': 'User',
         'rules': {
           'onDelete': 'RESTRICT',
           'onUpdate': 'RESTRICT'
         },
-        'mapping': 'user_id'
+        'mapping': 'id'
       }
     },
     'order_date': {

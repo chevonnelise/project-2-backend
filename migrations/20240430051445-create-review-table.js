@@ -19,7 +19,7 @@ exports.setup = function(options, seedLink) {
  */
 exports.up = function(db) {
   return db.createTable('Review', {
-    'review_id': {
+    'id': {
       'type': 'int',
       'primaryKey': true,
       'autoIncrement': true,
@@ -31,17 +31,17 @@ exports.up = function(db) {
       'notNull': true,
       'unique': true
     },
-    'product_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'product_id_fk',
+        'name': 'id_fk',
         'table': 'Product',
         'rules': {
           'onDelete': 'RESTRICT',
           'onUpdate': 'RESTRICT'
         },
-        'mapping': 'product_id'
+        'mapping': 'id'
       }
     },
     'rating': {

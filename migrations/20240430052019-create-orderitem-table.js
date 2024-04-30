@@ -19,23 +19,23 @@ exports.setup = function(options, seedLink) {
  */
 exports.up = function(db) {
   return db.createTable('OrderItem', {
-    'order_item_id': {
+    'id': {
       'type': 'int',
       'primaryKey': true,
       'autoIncrement': true,
       'unsigned': true
     },
-    'product_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'product_id_fk',
+        'name': 'id_fk',
         'table': 'Product',
         'rules': {
           'onDelete': 'RESTRICT',
           'onUpdate': 'RESTRICT'
         },
-        'mapping': 'product_id'
+        'mapping': 'id'
       }
     },
     'quantity': {
@@ -47,17 +47,17 @@ exports.up = function(db) {
       'precision': 10,
       'scale': 2
     },
-    'order_detail_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'order_detail_id_fk',
+        'name': 'id_fk',
         'table': 'OrderDetail',
         'rules': {
           'onDelete': 'RESTRICT',
           'onUpdate': 'RESTRICT'
         },
-        'mapping': 'order_detail_id'
+        'mapping': 'id'
       }
     }
   });

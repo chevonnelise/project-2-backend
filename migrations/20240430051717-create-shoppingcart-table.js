@@ -19,7 +19,7 @@ exports.setup = function(options, seedLink) {
  */
 exports.up = function(db) {
   return db.createTable('ShoppingCart', {
-    'shopping_cart_id': {
+    'id': {
       'type': 'int',
       'primaryKey': true,
       'autoIncrement': true,
@@ -29,47 +29,47 @@ exports.up = function(db) {
       'type': 'int',
       'unsigned': true
     },
-    'product_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'product_id_fk',
+        'name': 'id_fk',
         'table': 'Product',
         'rules': {
-          'onDelete': 'CASCADE',
-          'onUpdate': 'CASCADE'
+          'onDelete': 'RESTRICT',
+          'onUpdate': 'RESTRICT'
         },
-        'mapping': 'product_id'
+        'mapping': 'id'
       }
     },
-    'shopping_session_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'shopping_session_id_fk',
+        'name': 'id_fk',
         'table': 'ShoppingSession',
         'rules': {
-          'onDelete': 'CASCADE',
-          'onUpdate': 'CASCADE'
+          'onDelete': 'RESTRICT',
+          'onUpdate': 'RESTRICT'
         },
-        'mapping': 'shopping_session_id'
+        'mapping': 'id'
       }
     },
     'created_at': {
       'type': 'datetime',
       'defaultValue': new String('CURRENT_TIMESTAMP')
     },
-    'user_id': {
+    'id': {
       'type': 'int',
       'unsigned': true,
       'foreignKey': {
-        'name': 'user_id_fk',
+        'name': 'id_fk',
         'table': 'User',
         'rules': {
           'onDelete': 'RESTRICT',
           'onUpdate': 'RESTRICT'
         },
-        'mapping': 'user_id'
+        'mapping': 'id'
       }
     }
   });
